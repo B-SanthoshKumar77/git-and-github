@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello World</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f8fafc;
+      --muted: #b6c2d9;
+      --aqua: #66e3ff;
+      --rose: #ff7aa8;
+      --gold: #ffd166;
+      --panel: rgba(15, 23, 42, 0.68);
+      --line: rgba(255, 255, 255, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(102, 227, 255, 0.28), transparent 34%),
+        radial-gradient(circle at 80% 12%, rgba(255, 122, 168, 0.24), transparent 30%),
+        radial-gradient(circle at 55% 90%, rgba(255, 209, 102, 0.18), transparent 34%),
+        linear-gradient(135deg, #09111f 0%, #151a2e 48%, #07131a 100%);
+    }
+
+    .stage {
+      position: relative;
+      width: min(92vw, 900px);
+      padding: clamp(28px, 7vw, 78px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(24px);
+      isolation: isolate;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(120deg, rgba(102, 227, 255, 0.7), rgba(255, 122, 168, 0.45), rgba(255, 209, 102, 0.6));
+      opacity: 0.42;
+      filter: blur(22px);
+      transform: translateY(18px) scale(0.97);
+    }
+
+    .spark {
+      position: absolute;
+      width: 11px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--aqua);
+      box-shadow: 0 0 28px var(--aqua);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .spark.one {
+      top: 18%;
+      right: 13%;
+    }
+
+    .spark.two {
+      bottom: 16%;
+      left: 11%;
+      width: 8px;
+      background: var(--rose);
+      box-shadow: 0 0 24px var(--rose);
+      animation-delay: -2.2s;
+    }
+
+    .spark.three {
+      top: 13%;
+      left: 18%;
+      width: 6px;
+      background: var(--gold);
+      box-shadow: 0 0 22px var(--gold);
+      animation-delay: -4s;
+    }
+
+    main {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--aqua), var(--gold));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3.5rem, 13vw, 8.5rem);
+      line-height: 0.9;
+      letter-spacing: 0;
+    }
+
+    h1 span {
+      display: block;
+      background: linear-gradient(90deg, #ffffff, #b9f5ff 34%, #ffd8e7 68%, #fff3ba);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      max-width: 54ch;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: #08111f;
+      background: linear-gradient(90deg, var(--aqua), var(--gold));
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 14px 34px rgba(102, 227, 255, 0.18);
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .ticker {
+      position: absolute;
+      right: clamp(20px, 5vw, 58px);
+      bottom: clamp(18px, 4vw, 38px);
+      color: rgba(248, 250, 252, 0.62);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 0.78rem;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+      50% {
+        transform: translate3d(14px, -18px, 0);
+      }
+    }
+
+    @media (max-width: 620px) {
+      body {
+        place-items: stretch;
+        padding: 18px;
+      }
+
+      .stage {
+        align-self: center;
+      }
+
+      .ticker {
+        position: static;
+        margin-top: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="stage" aria-label="Hello World welcome card">
+    <span class="spark one"></span>
+    <span class="spark two"></span>
+    <span class="spark three"></span>
+
+    <main>
+      <p class="eyebrow">First page, big entrance</p>
+      <h1><span>Hello</span><span>World.</span></h1>
+      <p>
+        A tiny HTML file with a bit of atmosphere: glassy layers, luminous color,
+        and a welcome that feels dressed for the occasion.
+      </p>
+      <div class="actions" aria-label="Page actions">
+        <a class="button" href="#">Shine On</a>
+        <a class="button secondary" href="#">View Source</a>
+      </div>
+    </main>
+
+    <div class="ticker">HTML + CSS / ready to open</div>
+  </section>
+</body>
+</html>
